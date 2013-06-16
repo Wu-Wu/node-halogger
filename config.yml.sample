@@ -1,0 +1,8 @@
+#
+# halogger configuration
+#
+
+# hostname and UDP port listen to
+bind:
+    hostname: 'halogger.example.com'
+    port: '30514'

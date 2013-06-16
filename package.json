@@ -1,9 +1,9 @@
 {
     "name": "halogger",
     "description": "HAProxy logger build on MongoDB and node.js",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "devDependencies": {
         "glossy" : "latest",
-        "mongodb": "latest"
+        "js-yaml": "latest"
     }
 }

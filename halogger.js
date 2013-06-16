@@ -2,15 +2,20 @@
 // halogger server
 //
 
-var halogger = {};
-
-halogger.HOST = 'halogger.example.com';
-halogger.PORT = 30514;
-
 var dgram  = require('dgram')
   , server = dgram.createSocket('udp4')
-  , glossy = require('glossy').Parse;
+  , glossy = require('glossy').Parse
+  , yaml   = require('js-yaml')
+  , path   = require('path')
+  , config = {}
 
+try {
+    config = require(path.normalize(__dirname + '/config.yml'))
+}
+catch (e) {
+    console.log('error: failed to read config.yml');
+    process.exit(1);
+}
 
 server.on('listening', function () {
     var address = server.address();
@@ -100,4 +105,4 @@ function toDateTime (raw) {
     return ts ? new Date(ts[3], months[ ts[2] ], ts[1], ts[4], ts[5], ts[6], ts[7]) : null;
 }
 
-server.bind(halogger.PORT, halogger.HOST);
+server.bind(config.bind.port, config.bind.hostname);
